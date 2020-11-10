@@ -1,0 +1,21 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: #000;
+    /* font-family: 'Grenze Gotisch', cursive; */
+    color: #fff;
+}
+
+canvas {
+    width: 1280px;
+    height: 720px;
+    border: 1px solid #fff;
+}
+
+#debug {
+    height: 4em;
+    background-color: rgb(50, 50, 49);
+}
