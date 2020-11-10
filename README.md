@@ -11,5 +11,9 @@ This is a second implementation of a game engine fixing arquitectural bugs insid
 - bimaps are simple objects
 - render only when needed
 
-#### Docs 
+## Como contribuir? 
 
+1 - só baixe modifique e crie uma pull request
+2 - crie uma issue 
+
+https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests
