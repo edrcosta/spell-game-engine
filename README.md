@@ -8,15 +8,6 @@ https://github.com/edrcosta/spell-engine-v1
 
 This is a second implementation of a game engine fixing arquitectural bugs inside the original engine
 
-
-### fixes since 1.0
-
-- no more setinterval requestAnimationFrame nom bloking rendering
-- image and bitmap manipulation
-- no main screen 
-- bimaps are simple objects
-- render only when needed
-
 ## Como contribuir? 
 
 1 - só baixe modifique e crie uma pull request
