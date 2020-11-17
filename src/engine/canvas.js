@@ -10,6 +10,7 @@ class Canvas {
         this.context = element.getContext('2d');
         this.fixDpi();
     }
+
     canvasRendered = () => this.visualChange = false
 
     clear() {

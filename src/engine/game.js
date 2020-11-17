@@ -6,8 +6,6 @@ class Game {
     canvas;
     keyboard;
     isFirstFrame = true;
-    
-    //this allow the frame counter to be reset without get into bigger integer number 
     frameCounter = 0;
     frameCounterMultiplier = 0;
     frameCouterLimit = 10;
@@ -25,7 +23,6 @@ class Game {
     }
 
     start() {
-
         if (!this.keys) throw 'You must run setKeyboardKeys first'
 
         const levelNumber = this.levelNumber;
@@ -35,9 +32,7 @@ class Game {
 
         this.canvas = new Canvas('game');
         this.keyboard = new Keyboard();
-
         this.keyboard.startListemKeyboard(this.keys);
-
         window.requestAnimationFrame(this.gameLoop);
     }
     

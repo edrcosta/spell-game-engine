@@ -5,7 +5,12 @@ class StartLevel {
             sprites.worldMap.sprite = canvas.addSpriteIntoSprite(sprites.worldMap.sprite, sprites.tree.sprite, 10, 20)
         }
 
-        canvas.drawPixelSprite(sprites.worldMap.pos.x, sprites.worldMap.pos.y, sprites.worldMap.sprite, sprites.worldMap.colors)
+        canvas.drawPixelSprite(
+            sprites.worldMap.pos.x,
+            sprites.worldMap.pos.y,
+            sprites.worldMap.sprite,
+            sprites.worldMap.colors
+        )
         canvas.drawPixelSprite(
             sprites.player.pos.x,
             sprites.player.pos.y,
