@@ -1,4 +1,4 @@
-class StartLevel {
+class StartLevel extends Level {
     frame(canvas, keys, isFirstFrame) {
 
         if (isFirstFrame) {

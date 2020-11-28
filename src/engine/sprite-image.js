@@ -15,5 +15,5 @@ class SpriteImage
         this.element.addEventListener('load', this.whenImageIsLoaded, false);
     }
 
-    whenImageIsLoaded = () => { this.loaded = true }
+    whenImageIsLoaded = () => this.loaded = true;
 }
