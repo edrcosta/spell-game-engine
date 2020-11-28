@@ -14,12 +14,14 @@ class Game {
     constructor(clockSpeed, levelNumber) {
         this.clockSpeed = clockSpeed;
         this.levelNumber = levelNumber;
+        this.debugger = new GameDebugger();
     }
 
     setKeyboardKeys = (keys) => this.keys = keys
 
     loadLevels(levels) {
         this.levels = levels;
+        this.debugger.log('ENGINE', `Loading ${levels.length} levels`)
     }
 
     start() {
@@ -30,7 +32,7 @@ class Game {
         if (typeof this.levels[levelNumber] === 'undefined') throw `Level ${levelNumber} does not exists`;
         if (typeof this.levels[levelNumber].frame === 'undefined') throw `Level ${levelNumber} must have a frame function`;
 
-        this.canvas = new Canvas('game');
+        this.canvas = new Canvas('game', this.debugger);
         this.keyboard = new Keyboard();
         this.keyboard.startListemKeyboard(this.keys);
         window.requestAnimationFrame(this.gameLoop);
@@ -55,7 +57,7 @@ class Game {
         this.keyboard.resetKeyboard(this.keys);
 
         if(this.canvas.visualChange === true){
-            console.log(`frame rendered ${this.frameCounter}`, this.canvas.visualChange)
+            this.debugger.log('ENGINE', `frame: ${this.frameCounter}`, this.canvas.visualChange)
             window.requestAnimationFrame(this.gameLoop);
             this.canvas.canvasRendered()
         }

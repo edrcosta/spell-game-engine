@@ -2,10 +2,12 @@ class Canvas {
     element;
     context;
     visualChange = false;
+    debugger;
 
-    constructor(canvasId) {
+    constructor(canvasId, _debugger) {
         let element = document.getElementById(canvasId);
 
+        this.debugger = _debugger;
         this.element = element;
         this.context = element.getContext('2d');
         this.fixDpi();
@@ -66,8 +68,6 @@ class Canvas {
     }
 
     addSpriteIntoSprite(parentSprite, subSprite, x, y) {
-        console.log(parentSprite)
-        console.log(subSprite)
         this.visualChange = true;
 
         return subSprite
