@@ -13,6 +13,17 @@ class Canvas {
         this.fixDpi();
     }
 
+    dimensions = {
+        horizontal: {
+            percentual: (percentual) =>  percentual / 100 * this.element.width,
+            center: (relativeElementW) => relativeElementW ? (this.element.width / 2) - (relativeElementW / 2) : this.element.width / 2
+        },
+        vertical: {
+            percentual: (percentual) =>  percentual / 100 * this.element.height,
+            center: (relativeElementH) => relativeElementH ? (this.element.height / 2) - (relativeElementH / 2) : this.element.height / 2
+        }
+    }
+
     canvasRendered = () => this.visualChange = false
 
     clear() {
@@ -51,13 +62,13 @@ class Canvas {
         this.visualChange = true;
     }
 
-    drawImage(imageElement, x, y, sizeX, sizeY, flipped) {
+    drawImage(imageClass, x, y, sizeX, sizeY, flipped) {
 
         flipped = typeof flipped !== 'undefined' ? false : flipped;
 
         if (flipped) this.context.scale(-1, 1);
 
-        this.context.drawImage(imageElement, x, y, sizeX, sizeY);
+        this.context.drawImage(imageClass.element, x, y, sizeX, sizeY);
         this.visualChange = true;
     }
 
@@ -73,13 +84,14 @@ class Canvas {
         return subSprite
     }
 
+    setBackgroundColor = (color) => {
+        this.context.fillStyle = color;
+        this.context.fillRect(0, 0, this.element.width, this.element.height);
+    }
+
     drawText(text, color, size, x, y) {
 
-        if (x) x = this.element.width / 2;
-        if (y) y = this.element.height / 2;
-        if (size) size = 5;
-
-        this.context.font = size + "em arial"; //Grenze Gotisch;
+        this.context.font = size + "em 'Press Start 2P'"; //Grenze Gotisch;
         this.context.textAlign = "center";
         this.context.fillStyle = color;
         this.context.fillText(text, x, y);

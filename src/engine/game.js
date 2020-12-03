@@ -37,7 +37,13 @@ class Game {
         this.keyboard.startListemKeyboard(this.keys);
         window.requestAnimationFrame(this.gameLoop);
     }
-    
+
+    gameData = {}
+
+    removeGameDaata = (id) => { delete this.gameData[id] }
+    setGameData = (id, data) => { this.gameData[id] = data }
+    getGameData = (id) => this.gameData[id]
+
     gameLoop = () => {
         this.canvas.clear();
 

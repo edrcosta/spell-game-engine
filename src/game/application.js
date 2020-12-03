@@ -11,6 +11,9 @@ class StartLevel extends Level {
             sprites.worldMap.sprite,
             sprites.worldMap.colors
         )
+
+        sprites.player.pos.y = canvas.dimensions.vertical.center(sprites.player.pos.y)
+         
         canvas.drawPixelSprite(
             sprites.player.pos.x,
             sprites.player.pos.y,
