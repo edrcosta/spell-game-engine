@@ -2,7 +2,6 @@ class SpriteImage
 {
     src;
     element;
-    loaded = false;
 
     constructor(src){
         this.src = src;
@@ -10,10 +9,10 @@ class SpriteImage
     }
     
     createElement(){
-        this.element = new Image();
-        this.element.src = this.src;
-        this.element.addEventListener('load', this.whenImageIsLoaded, false);
+        return new Promise((resolve)=> {
+            this.element = new Image();
+            this.element.src = this.src;
+            this.element.addEventListener('load', resolve, false);
+        })
     }
-
-    whenImageIsLoaded = () => this.loaded = true;
 }

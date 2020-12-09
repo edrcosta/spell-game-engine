@@ -12,7 +12,13 @@ class Keyboard {
         let listener = new window.keypress.Listener();
 
         keys.forEach((key) => {
-            listener.counting_combo(key, () => { this.keyPress[key] = true });
+            if(key === 'all'){
+                document.onkeypress = () => {
+                    this.keyPress['all'] = true
+                }
+            }else{
+                listener.counting_combo(key, () => { this.keyPress[key] = true });                
+            }
         })
     }
 }
