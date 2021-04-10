@@ -1,4 +1,4 @@
-(() => {
+const generateRandSprites = (() => {
 
     let engine = new Game(100, 0);
 
@@ -9,4 +9,6 @@
     engine.loadLevels([ start ]);
 
     engine.start();
-})();
+});
+
+generateRandSprites()

@@ -1,16 +1,19 @@
 class Canvas {
-    element;
-    context;
-    visualChange = false;
-    debugger;
+    element
+    context
+    visualChange = false
+    debugger
+    mathHelper
 
     constructor(canvasId, _debugger) {
-        let element = document.getElementById(canvasId);
+        let element = document.getElementById(canvasId)
 
-        this.debugger = _debugger;
-        this.element = element;
-        this.context = element.getContext('2d');
-        this.fixDpi();
+        this.debugger = _debugger
+        this.element = element
+        this.context = element.getContext('2d')
+
+        this.mathHelper = new MathHelper()
+        this.fixDpi()
     }
 
     dimensions = {
@@ -24,77 +27,105 @@ class Canvas {
         }
     }
 
-    canvasRendered = () => this.visualChange = false
+    getRandomInt = (max, min) => this.mathHelper.getRandomInt(max, min)
 
+    /**
+     * Clear the entire canvas
+     */
     clear() {
         this.context.clearRect(0, 0, this.element.width, this.element.height)
-        this.visualChange = true;
     }
 
+    /**
+     * fix canvas blur
+     */
     fixDpi() {
-        const dpi = window.devicePixelRatio;
+        const dpi = window.devicePixelRatio
 
-        const styleHeight = +getComputedStyle(this.element).getPropertyValue("height").slice(0, -2);
-        const styleWidth = +getComputedStyle(this.element).getPropertyValue("width").slice(0, -2);
+        const styleHeight = +getComputedStyle(this.element).getPropertyValue("height").slice(0, -2)
+        const styleWidth = +getComputedStyle(this.element).getPropertyValue("width").slice(0, -2)
 
-        this.element.setAttribute('height', styleHeight * dpi);
-        this.element.setAttribute('width', styleWidth * dpi);
+        this.element.setAttribute('height', styleHeight * dpi)
+        this.element.setAttribute('width', styleWidth * dpi)
     }
 
-    drawPixel(x, y, color) {
-        this.context.fillStyle = color;
+    /**
+     * Draw a pixel in a position with configurable size
+     * 
+     * @param {Int} x 
+     * @param {Int} y 
+     * @param {"#000"} color 
+     */
+    drawPixel(x, y, color, pixelW = 10, pixelH = 10) {
+        this.context.fillStyle = color
 
-        this.context.fillRect(x, y, 10, 10);
-        this.context.fillRect(x, y, 10, 10);
-        this.visualChange = true;
+        this.context.fillRect(x, y, pixelW, pixelH)
+        this.context.fillRect(x, y, pixelW, pixelH)
     }
 
-    drawPixelSprite(x, y, sprite, colors) {
-        const originalX = x;
+    /**
+     * render a pixel sprite simple scanning 
+     * 
+     * @param {Sprite} spriteClass 
+     */
+    drawPixelSprite(spriteClass) {
+        let x = spriteClass.position.x
+        let y = spriteClass.position.y
+        
+        const colors = spriteClass.colors
+        const sprite = spriteClass.frames
+        const originalX = x
+        
         sprite.forEach(row => {
             row.forEach((pixel, i) => {
-                this.drawPixel(x, y, colors[pixel])
+                this.drawPixel(x, y, colors[pixel], spriteClass.pixelSize, spriteClass.pixelSize)
                 x += 10
                 if (i === row.length - 1) x = originalX
             })
             y += 10
-        });
-        this.visualChange = true;
+        })
     }
 
+    /**
+     * Draw image with position and size 
+     * 
+     * @param {*} imageClass 
+     * @param {*} x 
+     * @param {*} y 
+     * @param {*} sizeX 
+     * @param {*} sizeY 
+     * @param {*} flipped 
+     */
     drawImage(imageClass, x, y, sizeX, sizeY, flipped) {
 
-        flipped = typeof flipped !== 'undefined' ? false : flipped;
+        flipped = typeof flipped !== 'undefined' ? false : flipped
 
-        if (flipped) this.context.scale(-1, 1);
+        if (flipped) this.context.scale(-1, 1)
 
-        this.context.drawImage(imageClass.element, x, y, sizeX, sizeY);
-        this.visualChange = true;
+        this.context.drawImage(imageClass.element, x, y, sizeX, sizeY)
     }
 
-    getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    addSpriteIntoSprite(parentSprite, subSprite, x, y) {
-        this.visualChange = true;
-
-        return subSprite
-    }
-
+    /**
+     * Set a background color
+     * @param {*} color 
+     */
     setBackgroundColor = (color) => {
-        this.context.fillStyle = color;
-        this.context.fillRect(0, 0, this.element.width, this.element.height);
+        this.context.fillStyle = color
+        this.context.fillRect(0, 0, this.element.width, this.element.height)
     }
 
+    /**
+     * Draw a text in a given position with some color
+     * @param {*} text 
+     * @param {*} color 
+     * @param {*} size 
+     * @param {*} x 
+     * @param {*} y 
+     */
     drawText(text, color, size, x, y) {
-
-        this.context.font = size + "em 'Press Start 2P'"; //Grenze Gotisch;
-        this.context.textAlign = "center";
-        this.context.fillStyle = color;
-        this.context.fillText(text, x, y);
-        this.visualChange = true;
+        this.context.font = size + "em 'Press Start 2P'" //Grenze Gotisch
+        this.context.textAlign = "center"
+        this.context.fillStyle = color
+        this.context.fillText(text, x, y)
     }
 }

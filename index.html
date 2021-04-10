@@ -8,14 +8,29 @@
 </head>
 
 <body>
-    <div id="debug"></div>
+    
+    <div id="panel">
+        <p>
+          Selecione a demonstração  
+        </p>
+    
+        <p>
+            <select id="select-game">
+                <option value="">Selecione um exemplo de jogo</option>
+            </select>
 
-    <canvas id='game'></canvas>
-
+            <input type="button" value="Start game" id="start-game">
+            <input type="button" value="Reset" id="reset-btn" style="display: none">
+        </p>
+        <div id="debug-panel"></div>
+        <canvas id='game'></canvas>
+    </div>
+    
     <script src="src/libs/keypress-2.1.5.min.js"></script>
-
     <script src="src/engine/game-debugger.js"></script>
+    <script src="src/engine/math.js"></script>
     <script src="src/engine/canvas.js"></script>
+    <script src="src/engine/sprite.js"></script>
     <script src="src/engine/sprite-image.js"></script>
     <script src="src/engine/keyboard.js"></script>
     <script src="src/engine/game.js"></script>
@@ -23,9 +38,8 @@
     <script src="src/engine/audio.js"></script>
     <script src="src/engine/debug.js"></script>
 
-    <script src="src/game/sprites.js"></script>
-    <script src="src/game/application.js"></script>
-    <script src="src/game/start.js"></script>
+    <script src="src/docs/gamelist.js"></script>
+    <script src="src/docs/ui.js"></script>
 </body>
 
 </html>

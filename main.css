@@ -5,17 +5,41 @@
 
 body {
     background: #000;
-    /* font-family: 'Grenze Gotisch', cursive; */
     color: #fff;
 }
 
 canvas {
-    width: 1280px;
+    width: 720px;
     height: 720px;
     border: 1px solid #fff;
+    margin: 0 auto;
 }
 
-#debug {
+#debug-panel {
     height: 4em;
+    overflow-y: scroll;
     background-color: rgb(50, 50, 49);
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.debugger-line{
+    color: rgb(201, 201, 243);
+}
+
+#panel{
+    font-size: 1.2em;
+    color: #fff;
+    padding: 1em;
+    width: 720px;
+    margin: 0 auto;
+}
+
+select{
+    padding: 1em;
+    font-size: 1em;
+}
+input{
+    padding: 1em;
+    font-size: 1em;
 }

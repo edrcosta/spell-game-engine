@@ -7,15 +7,16 @@
  * - ALL
  */
 
-let DEBUG_TYPE = 'none'
-
 class GameDebugger
 {
-    log = (type, data) => {
-        if(!DEBUG_TYPE) return false
-        const debugType = DEBUG_TYPE.toLocaleLowerCase()
-        if(type.toLocaleLowerCase() === debugType || debugType === 'all'){
-            console.log({ type, data })
-        }
+    static errorCount = 0
+
+    static log = (data) => {
+      if (typeof data !== 'string'){
+        data = JSON.stringify(data)
+      }
+
+      document.getElementById('debug-panel').innerHTML += `<p class='debugger-line'>${GameDebugger.errorCount++}::${data}</p>`
+      document.getElementById('debug-panel').scrollTop  = 99999999
     }
 }

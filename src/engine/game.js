@@ -12,12 +12,14 @@ class Game {
     frameCounterIterator = 0
     frameInterval = 0
     lastGameLoopTimeStamp = false
+    math;
 
     constructor(framesPersecond, levelNumber) {
         this.framesPersecond = framesPersecond
         this.frameInterval = 1000 / this.framesPersecond
         this.levelNumber = levelNumber
         this.debugger = new GameDebugger()
+        this.math = new MathHelper()
     }
 
     /**
@@ -58,9 +60,9 @@ class Game {
      * @note canvas dont has a frame rate system build in 
      */    
     frameRateCheck(){
-        if(!this.lastGameLoopTimeStamp) this.lastGameLoopTimeStamp = new Date()
+        if (!this.lastGameLoopTimeStamp) this.lastGameLoopTimeStamp = new Date()
         const now = new Date()
-        if(now.getTime() - this.lastGameLoopTimeStamp.getTime() > this.frameInterval) {
+        if (now.getTime() - this.lastGameLoopTimeStamp.getTime() > this.frameInterval) {
             this.lastGameLoopTimeStamp = new Date()
             return true
         }
@@ -75,7 +77,7 @@ class Game {
      * @note using requestAnimationFrame instead of setInterval this does not block the event loop 
      */
     gameLoop = () => {
-        if(!this.frameRateCheck()){
+        if (!this.frameRateCheck()){
             return window.requestAnimationFrame(this.gameLoop)
         }
 
@@ -83,14 +85,13 @@ class Game {
         
         this.canvas.clear()
 
-        const isLevelEnd = this.levels[this.levelNumber].frame(this.canvas, this.keyboard.keyPress, this.isFirstFrame)
+        const isLevelEnd = this.levels[this.levelNumber].frame(this.canvas, this.keyboard.keyPress, this.isFirstFrame, this.math)
 
         if (isLevelEnd) this.levelNumber++
 
         this.isFirstFrame = false
         this.keyboard.resetKeyboard(this.keys)    
         window.requestAnimationFrame(this.gameLoop)
-        this.canvas.canvasRendered()
         this.frameCounter++
     }
 }
