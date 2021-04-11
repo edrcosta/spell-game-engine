@@ -1,5 +1,4 @@
-class SpriteImage
-{
+class SpriteImage {
     src;
     element;
 

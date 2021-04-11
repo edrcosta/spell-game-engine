@@ -16,7 +16,7 @@ class Canvas {
         this.fixDpi()
     }
 
-    dimensions = {
+    sizes = {
         horizontal: {
             percentual: (percentual) =>  percentual / 100 * this.element.width,
             center: (relativeElementW) => relativeElementW ? (this.element.width / 2) - (relativeElementW / 2) : this.element.width / 2
@@ -27,6 +27,12 @@ class Canvas {
         }
     }
 
+    /**
+     * return a random number bettwen a range
+     * @param {Int} max 
+     * @param {Int} min 
+     * @returns 
+     */
     getRandomInt = (max, min) => this.mathHelper.getRandomInt(max, min)
 
     /**
@@ -58,7 +64,6 @@ class Canvas {
      */
     drawPixel(x, y, color, pixelW = 10, pixelH = 10) {
         this.context.fillStyle = color
-
         this.context.fillRect(x, y, pixelW, pixelH)
         this.context.fillRect(x, y, pixelW, pixelH)
     }
@@ -79,10 +84,10 @@ class Canvas {
         sprite.forEach(row => {
             row.forEach((pixel, i) => {
                 this.drawPixel(x, y, colors[pixel], spriteClass.pixelSize, spriteClass.pixelSize)
-                x += 10
+                x += spriteClass.pixelSize
                 if (i === row.length - 1) x = originalX
             })
-            y += 10
+            y += spriteClass.pixelSize
         })
     }
 
@@ -97,11 +102,7 @@ class Canvas {
      * @param {*} flipped 
      */
     drawImage(imageClass, x, y, sizeX, sizeY, flipped) {
-
-        flipped = typeof flipped !== 'undefined' ? false : flipped
-
-        if (flipped) this.context.scale(-1, 1)
-
+        if (typeof flipped !== 'undefined' ? false : flipped) this.context.scale(-1, 1)
         this.context.drawImage(imageClass.element, x, y, sizeX, sizeY)
     }
 
