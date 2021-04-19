@@ -1,18 +1,20 @@
 class Game {
-    framesPersecond = 100
     levels
     currentLevel
-    levelNumber = 0
     canvas
     keyboard
-    isFirstFrame = true
+    math;
+
+    levelNumber = 0
     frameCounter = 0
     frameCounterMultiplier = 0
-    frameCouterLimit = 10
     frameCounterIterator = 0
     frameInterval = 0
+    framesPersecond = 40
+    frameCouterLimit = 10
+
     lastGameLoopTimeStamp = false
-    math;
+    isFirstFrame = true
 
     constructor(framesPersecond, levelNumber) {
         this.framesPersecond = framesPersecond
@@ -61,7 +63,9 @@ class Game {
      */    
     frameRateCheck(){
         if (!this.lastGameLoopTimeStamp) this.lastGameLoopTimeStamp = new Date()
+
         const now = new Date()
+
         if (now.getTime() - this.lastGameLoopTimeStamp.getTime() > this.frameInterval) {
             this.lastGameLoopTimeStamp = new Date()
             return true
@@ -74,7 +78,7 @@ class Game {
      * 
      * !called in the frameRate specify by the user 
      * 
-     * @note using requestAnimationFrame instead of setInterval this does not block the event loop 
+     * @note using requestAnimationFrame instead of setInterval, not block the event loop 
      */
     gameLoop = () => {
         if (!this.frameRateCheck()){

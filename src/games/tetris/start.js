@@ -1,4 +1,4 @@
-const generateRandSprites = (() => {
+const tetrisGameExample = (() => {
 
     let engine = new Game(100, 0);
 
@@ -11,13 +11,9 @@ const generateRandSprites = (() => {
     engine.start();
 });
 
-
-const downloadCheck = setInterval(() => {
+const waitDownloadAllJsCode = setInterval(() => {
     try {
-        generateRandSprites()
-        clearInterval(downloadCheck)
-    } catch (error) {
-        /// ignore download errors..
-        // @todo remove this is ver uggly
-    }
+        tetrisGameExample()
+        clearInterval(waitDownloadAllJsCode)
+    } catch (error) {}
 }, 100);

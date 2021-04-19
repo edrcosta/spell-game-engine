@@ -1,6 +1,5 @@
-teste = SPRITES.teste
 class StartLevel extends Level {
-    allPeaces = ['cube', 'l']
+    allPeaces = ['cube']
     stopedPeaces = []
     target = ''
     currentPeace = ''
@@ -14,8 +13,9 @@ class StartLevel extends Level {
      * @param {MathHelper} math 
      */
     frame(canvas, keys, firstFrame, math) {
-        // get a new random peace  
-        if(firstFrame) this.currentPeace = this.getRandomPeace(math)
+        if(firstFrame) {
+            this.currentPeace = this.getRandomPeace(math)
+        }
         this.applyPressedKeys(keys)        
         this.movePeace(canvas, keys, firstFrame, math)
         this.render(canvas, keys, firstFrame, math)
@@ -27,25 +27,25 @@ class StartLevel extends Level {
      */
     getRandomPeace = (math) => SPRITES[math.getRandomElement(this.allPeaces)]()
 
+    rotateCurrentFramez(arr){
+        let first = arr.shift();
+        arr.push(first);
+        return arr;
+    }
+
     /**
      * Apply changes into peace when users press a key
      * @param {*} keys 
      */
     applyPressedKeys(keys){
-        function rotateLeft(arr){
-            let first = arr.shift();
-            arr.push(first);
-            return arr;
-        }
-
         // rotate
-        if(keys.a) this.currentPeace.frames = rotateLeft(this.currentPeace.frames)
+        if(keys.a) this.currentPeace.rotateSprite()
         // right move
-        if(keys.right && this.currentPeace.position.x < 600) this.currentPeace.position.x+= 40
+        if(keys.right && this.currentPeace.position.x < 600) this.currentPeace.setX(+40)
         // left move
-        if(keys.left && this.currentPeace.position.x > 0) this.currentPeace.position.x-= 40
+        if(keys.left && this.currentPeace.position.x > 0) this.currentPeace.setX(-40)
         // fast down
-        if(keys.down && this.currentPeace.position.y < this.bottom) this.currentPeace.position.y+=10
+        if(keys.down && this.currentPeace.position.y < this.bottom) this.currentPeace.setY(+10)
     }
 
     /**
@@ -57,11 +57,11 @@ class StartLevel extends Level {
      */
     movePeace(canvas, keys, firstFrame, math) {
         // check if get the bottom and fix possible sum erros 
-        if(this.currentPeace.position.y > this.bottom) this.currentPeace.position.y = this.bottom
+        if(this.currentPeace.position.y > this.bottom) this.currentPeace.setY(this.bottom)
 
         // increment position Y to the current peace
         if(this.currentPeace.position.y < this.bottom){
-            this.currentPeace.position.y += 1
+            this.currentPeace.setY(+1)
         }else{
             this.keyReachBottom(canvas, keys, firstFrame, math)
         }
@@ -80,8 +80,8 @@ class StartLevel extends Level {
         const clone = this.getRandomPeace(math)
 
         this.currentPeace = clone
-        this.currentPeace.position.x = 0
-        this.currentPeace.position.y = 0
+        this.currentPeace.setX(0)
+        this.currentPeace.setY(0)
     }
 
     /**
@@ -95,7 +95,6 @@ class StartLevel extends Level {
         this.stopedPeaces.forEach((render) => {
             canvas.drawPixelSprite(render)
         })
-
         canvas.drawPixelSprite(this.currentPeace)
     }
 }

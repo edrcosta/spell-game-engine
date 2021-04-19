@@ -14,13 +14,19 @@ class Sprite {
         this.pixelSize = pixelSize ? pixelSize : 10
     }
 
-    move({x, y }, keepMoving, speed){
-        if (typeof keepMoving !== 'undefined' && keepMoving === true){
-            this.position.x += x / speed * x
-            this.position.y += y / speed * y
-        }else{
-            this.position.x = x
-            this.position.y = y
-        }
+    setX = (x) => this.position.x += x
+    setY = (y) => this.position.y += y
+
+    rotateSprite(){
+        
+        let result = this.frames.map((row) => {
+            return row.reverse()
+        })
+        
+        result = result.reverse()
+        
+
+        console.log('modified', result)
+        console.log('ORIGINAL', this.frames)
     }
 }
