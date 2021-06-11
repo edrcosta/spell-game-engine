@@ -89,7 +89,12 @@ class Game {
         
         this.canvas.clear()
 
-        const isLevelEnd = this.levels[this.levelNumber].frame(this.canvas, this.keyboard.keyPress, this.isFirstFrame, this.math)
+        const isLevelEnd = this.levels[this.levelNumber].frame(
+            this.canvas, 
+            this.keyboard.keyPress, 
+            this.isFirstFrame, 
+            this.math
+        )
 
         if (isLevelEnd) this.levelNumber++
 

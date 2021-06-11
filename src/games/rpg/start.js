@@ -1,11 +1,13 @@
 const tetrisGameExample = (() => {
 
-    let engine = new Game(30, 0);
+    let engine = new Game(100, 0);
 
     let start = new StartLevel();
 
-    engine.setKeyboardKeys([ 'up', 'down', 'left', 'right', 'a' ])
+    engine.setKeyboardKeys([ 'up','mouse', 'down', 'left', 'right', 'a' ])
+
     engine.loadLevels([ start ]);
+
     engine.start();
 });
 

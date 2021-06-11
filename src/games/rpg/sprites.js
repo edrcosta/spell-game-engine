@@ -10,6 +10,7 @@ SPRITES.cube = () => new Sprite({
     pixelSize: 40
 })
 
+
 SPRITES.l = () => new Sprite({
     colors: ['transparent', 'blue'],
     frames: [

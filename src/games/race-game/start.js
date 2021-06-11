@@ -1,6 +1,6 @@
 const tetrisGameExample = (() => {
 
-    let engine = new Game(30, 0);
+    let engine = new Game(10, 0);
 
     let start = new StartLevel();
 

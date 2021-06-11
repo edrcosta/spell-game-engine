@@ -102,7 +102,8 @@ class Canvas {
      * @param {*} flipped 
      */
     drawImage(imageClass, x, y, sizeX, sizeY, flipped) {
-        if (typeof flipped !== 'undefined' ? false : flipped) this.context.scale(-1, 1)
+        if (typeof flipped !== 'undefined' ? false : flipped) 
+            this.context.scale(-1, 1)
         this.context.drawImage(imageClass.element, x, y, sizeX, sizeY)
     }
 
