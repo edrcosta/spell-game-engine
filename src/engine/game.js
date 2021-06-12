@@ -1,20 +1,23 @@
 class Game {
+    // Game     
     levels
     currentLevel
+    
+    // Libraries 
     canvas
     keyboard
-    math;
+    math
 
+    // Level control variables
     levelNumber = 0
-    frameCounter = 0
-    frameCounterMultiplier = 0
-    frameCounterIterator = 0
-    frameInterval = 0
-    framesPersecond = 40
-    frameCouterLimit = 10
-
-    lastGameLoopTimeStamp = false
+    frameCount = 0
     isFirstFrame = true
+
+    // Clock control variabless
+    framesPersecond = 40
+    frameInterval = 0
+    lastGameLoopTimeStamp = false
+
 
     constructor(framesPersecond, levelNumber) {
         this.framesPersecond = framesPersecond
@@ -36,7 +39,7 @@ class Game {
      * 
      * @param {Array<class>} levels 
      */
-    loadLevels = (levels) => this.levels = levels
+    loadLevels = (levels) => this.levels = levels.map((levelClass) => new levelClass())
     
     /**
      * Start the game rendering
@@ -88,19 +91,25 @@ class Game {
         if (!this.levels[this.levelNumber]) return false
         
         this.canvas.clear()
-
-        const isLevelEnd = this.levels[this.levelNumber].frame(
+        
+        // add libraries into the level 
+        this.levels[this.levelNumber].engineToolInjection(
             this.canvas, 
             this.keyboard.keyPress, 
-            this.isFirstFrame, 
-            this.math
+            this.math,
+            this.isFirstFrame
         )
+        
+        const isLevelEnd = this.levels[this.levelNumber].frame({
+            isFirstFrame: this.isFirstFrame, 
+            frameCount: this.frameCount
+        })
 
         if (isLevelEnd) this.levelNumber++
 
         this.isFirstFrame = false
         this.keyboard.resetKeyboard(this.keys)    
         window.requestAnimationFrame(this.gameLoop)
-        this.frameCounter++
+        this.frameCount++
     }
 }

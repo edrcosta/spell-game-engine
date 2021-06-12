@@ -14,19 +14,9 @@ class Sprite {
         this.pixelSize = pixelSize ? pixelSize : 10
     }
 
-    setX = (x) => this.position.x += x
-    setY = (y) => this.position.y += y
+    setX = (x) => this.position.x = x
+    setY = (y) => this.position.y = y
 
-    rotateSprite(){
-        
-        let result = this.frames.map((row) => {
-            return row.reverse()
-        })
-        
-        result = result.reverse()
-        
-
-        console.log('modified', result)
-        console.log('ORIGINAL', this.frames)
-    }
+    incrementX = (x) => this.position.x += x
+    incrementY = (y) => this.position.y += y
 }

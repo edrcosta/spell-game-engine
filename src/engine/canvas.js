@@ -29,6 +29,7 @@ class Canvas {
 
     /**
      * return a random number bettwen a range
+     * 
      * @param {Int} max 
      * @param {Int} min 
      * @returns 
