@@ -1,20 +1,17 @@
-class StartLevel extends Level {
+class StartLevel extends SpellLevel {
     allPeaces = ['cube']
     currentPeace = ''
     dropSpeed = 4
 
     frame({ isFirstFrame }) {
-        if(isFirstFrame) {
-            this.currentPeace = this.getRandomPeace()
-        }
-
+        if(isFirstFrame) this.currentPeace = this.getRandomPeace()
         this.currentPeace.incrementY(this.dropSpeed)
         this.canvas.drawPixelSprite(this.currentPeace)
     }
 
-    getRandomPeace = () => {    
-        const randomPeaceId = this.math.getRandomElement(this.allPeaces)
-        const spriteInstance = SPRITES[randomPeaceId]()
-        return spriteInstance;
+    getRandomPeace = () => {
+        return SPRITES[
+            this.math.getRandomElement(this.allPeaces)
+        ];
     }
 }

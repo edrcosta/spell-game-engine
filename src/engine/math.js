@@ -1,4 +1,4 @@
-class MathHelper {
+class SpellMathHelper {
     /**
      * return a random number bettween a range
      * @param {*} min 

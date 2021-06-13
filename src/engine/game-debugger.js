@@ -6,7 +6,7 @@
  * - PIXEL
  * - ALL
  */
-class GameDebugger
+class SpellGameDebugger
 {
     static errorCount = 0
 

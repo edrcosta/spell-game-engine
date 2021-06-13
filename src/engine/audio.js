@@ -1,4 +1,4 @@
-class Audio
+class SpellAudio
 {
     files;
 

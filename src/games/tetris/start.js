@@ -1,19 +1,11 @@
-const tetrisGame = () => {
-    const tetrisGame = new Game(20, 0);
+// Instanciate the engine
+const tetrisGame = new SpellGame(20, 0);
 
-    tetrisGame.setKeyboardKeys([ 'up', 'down', 'left', 'right', 'a' ])
-    tetrisGame.loadLevels([ StartLevel ]);
-    tetrisGame.start();
-}
+// create a new keyboard watcher 
+tetrisGame.setKeyboardKeys([ 'up', 'down', 'left', 'right', 'a' ])
 
-// This just load the game when all js files is downloaded 
-const lazzyLoading = () => {
-    try {
-        tetrisGame()
-        clearInterval(waitDownloadAllJsCode) // remove the interval 
-    } catch (error) {
-        console.log(error)
-    }
-}
+// load level classes
+tetrisGame.loadLevels([ StartLevel ]);
 
-const waitDownloadAllJsCode = setInterval(lazzyLoading, 100);
+// start the game at the first level 
+tetrisGame.start(0);

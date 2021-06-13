@@ -1,4 +1,4 @@
-const canvas = new Canvas('game')
+const canvas = new SpellCanvas('game')
 
 let positions = {
     x: 0,

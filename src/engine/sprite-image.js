@@ -1,4 +1,4 @@
-class SpriteImage {
+class SpellSpriteImage {
     src;
     element;
 
@@ -7,6 +7,11 @@ class SpriteImage {
         this.createElement(src);
     }
     
+    /**
+     * create an valid html dom element
+     * 
+     * @returns Promise<Image HTML Dom element>
+     */
     createElement(){
         return new Promise((resolve)=> {
             this.element = new Image();

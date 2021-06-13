@@ -1,4 +1,4 @@
-class Game {
+class SpellGame {
     // Game     
     levels
     currentLevel
@@ -18,13 +18,11 @@ class Game {
     frameInterval = 0
     lastGameLoopTimeStamp = false
 
-
-    constructor(framesPersecond, levelNumber) {
+    constructor(framesPersecond) {
         this.framesPersecond = framesPersecond
         this.frameInterval = 1000 / this.framesPersecond
-        this.levelNumber = levelNumber
-        this.debugger = new GameDebugger()
-        this.math = new MathHelper()
+        this.debugger = new SpellGameDebugger()
+        this.math = new SpellMathHelper()
     }
 
     /**
@@ -44,7 +42,9 @@ class Game {
     /**
      * Start the game rendering
      */
-    start() {
+    start(level) {
+        this.levelNumber = level
+
         if (!this.keys) throw 'You must run setKeyboardKeys first'
 
         const levelNumber = this.levelNumber
@@ -52,8 +52,8 @@ class Game {
         if (typeof this.levels[levelNumber] === 'undefined') throw `Level ${levelNumber} does not exists`
         if (typeof this.levels[levelNumber].frame === 'undefined') throw `Level ${levelNumber} must have a frame function`
 
-        this.canvas = new Canvas('game', this.debugger)
-        this.keyboard = new Keyboard()
+        this.canvas = new SpellCanvas('game', this.debugger)
+        this.keyboard = new SpellKeyboard()
 
         this.keyboard.startListemKeyboard(this.keys)
         window.requestAnimationFrame(this.gameLoop)

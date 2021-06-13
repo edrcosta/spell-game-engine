@@ -1,3 +1,3 @@
-class Colission {
+class SpellColission {
     
 }

@@ -1,7 +1,8 @@
-class Level {
+class SpellLevel {
     canvas
     keyboard
     math
+
     /**
      * Inject into a level class the current game state and tools available 
      * 

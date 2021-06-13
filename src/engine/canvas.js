@@ -1,4 +1,4 @@
-class Canvas {
+class SpellCanvas {
     element
     context
     visualChange = false
@@ -11,11 +11,13 @@ class Canvas {
         this.debugger = _debugger
         this.element = element
         this.context = element.getContext('2d')
-
-        this.mathHelper = new MathHelper()
+        this.mathHelper = new SpellMathHelper()
         this.fixDpi()
     }
 
+    /**
+     * Canvas size info
+     */
     sizes = {
         horizontal: {
             percentual: (percentual) =>  percentual / 100 * this.element.width,
