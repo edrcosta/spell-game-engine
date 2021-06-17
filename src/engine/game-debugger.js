@@ -6,8 +6,7 @@
  * - PIXEL
  * - ALL
  */
-class SpellGameDebugger
-{
+class SpellGameDebugger {
     static errorCount = 0
 
     static log = (data) => {

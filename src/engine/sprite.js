@@ -20,4 +20,12 @@ class SpellSprite {
      */
     incrementX = (x) => this.position.x += x
     incrementY = (y) => this.position.y += y
+
+    /**
+     * Edit the sprite array
+     * 
+     * @param {Array[]} sprite 
+     * @returns 
+     */
+    change = (sprite) => this.frames = sprite
 }

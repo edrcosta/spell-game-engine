@@ -30,14 +30,20 @@ class SpellGame {
      * 
      * @param {Array<string>} keys 
      */
-    setKeyboardKeys = (keys) => this.keys = keys
+     setKeyboard = (keys) => {
+        this.keys = keys
+        return this
+     }
 
     /**
      * Define a array of levels to be called 
      * 
      * @param {Array<class>} levels 
      */
-    loadLevels = (levels) => this.levels = levels.map((levelClass) => new levelClass())
+    setLevels = (levels) => {
+        this.levels = levels.map((levelClass) => new levelClass())
+        return this
+    }
     
     /**
      * Start the game rendering

@@ -1,16 +1,11 @@
 const canvas = new SpellCanvas('game')
 
-let positions = {
-    x: 0,
-    y: 0
-}
+const colors = ['blue', 'red', 'green']
+const color = canvas.getRandomInt(0, colors.length - 1)
 
-document.onmousemove = (e) => {    
-    const rect = canvas.element.getBoundingClientRect();
-    positions.x = e.clientX - rect.left - 5;
-    positions.y = e.clientY- rect.top - 5;
-}
+canvas.setBackgroundColor('#000');
 
-document.onclick = () => {
-    canvas.drawPixel(positions.x, positions.y, 'red', 10)
-}
+canvas.drawPixel(100, 10, 'blue', 100)
+canvas.drawPixel(100, 30, 'blue', 100)
+canvas.drawPixel(100, 90, 'blue', 100)
+canvas.drawPixel(100, 110, 'blue', 100)

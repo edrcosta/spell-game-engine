@@ -1,10 +1,10 @@
 class SpellSpriteImage {
-    src;
-    element;
+    src
+    element
 
     constructor(src){
-        this.src = src;
-        this.createElement(src);
+        this.src = src
+        this.createElement(src)
     }
     
     /**
@@ -12,11 +12,9 @@ class SpellSpriteImage {
      * 
      * @returns Promise<Image HTML Dom element>
      */
-    createElement(){
-        return new Promise((resolve)=> {
-            this.element = new Image();
-            this.element.src = this.src;
-            this.element.addEventListener('load', resolve, false);
-        })
-    }
+    createElement = () => new Promise((resolve)=> {
+        this.element = new Image()
+        this.element.src = this.src
+        this.element.addEventListener('load', resolve, false)
+    })
 }

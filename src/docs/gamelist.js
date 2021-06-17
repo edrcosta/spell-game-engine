@@ -1,22 +1,16 @@
 const gameList = {
-    // 'race-game': [
-    //     'src/games/race-game/sprites.js',
-    //     'src/games/race-game/application.js',
-    //     'src/games/race-game/start.js',
-    // ],
     'tetris': [
-        'src/games/tetris/sprites.js',
-        'src/games/tetris/application.js',
-        'src/games/tetris/start.js',
+        'src/example-games/tetris/sprites.js',
+        'src/example-games/tetris/application.js',
+        'src/example-games/tetris/start.js',
     ],
-    // 'rpg': [
-    //     'src/games/rpg/sprites.js',
-    //     'src/games/rpg/application.js',
-    //     'src/games/rpg/start.js',
-    // ],
-    // 'jump': [
-    //     'src/games/jump/sprites.js',
-    //     'src/games/jump/application.js',
-    //     'src/games/jump/start.js',
-    // ]
+    'Renderizando pixels manualmente': [
+        'src/example-games/raw-pixel-rendering/application.js',
+    ],
+    'moving-pixels-manually': [
+        'src/example-games/raw-pixel-rendering/application.js',
+    ],
+    'bitmap-rendering': [
+        'src/example-games/bitmap-rendering/application.js',
+    ],
 }
