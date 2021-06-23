@@ -5,4 +5,5 @@ const Tetris = new SpellGame(fps, startAtLevel)
 Tetris
     .setKeyboard([ 'up', 'down', 'left', 'right', 'a' ])
     .setLevels([ StartLevel ])
+    .setGameCoordSystem('web')
     .start(0)

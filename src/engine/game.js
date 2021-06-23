@@ -18,6 +18,8 @@ class SpellGame {
     frameInterval = 0
     lastGameLoopTimeStamp = false
 
+    coordSystem = 'web'
+
     constructor(framesPersecond) {
         this.framesPersecond = framesPersecond
         this.frameInterval = 1000 / this.framesPersecond
@@ -34,6 +36,18 @@ class SpellGame {
         this.keys = keys
         return this
      }
+    
+    /**
+     * If you wanto use a web like coords top rigth conner being the 0 you set to 'web' 
+     * if you wanto to use as an tipical cartesian system where the bottom rigth conner is the 0 use 'fixed'
+     * 
+     * @param {web or fixed} type 
+     * @returns 
+     */
+    setGameCoordSystem(type){
+        this.coordSystem = type
+        return this
+    }
 
     /**
      * Define a array of levels to be called 
@@ -90,22 +104,25 @@ class SpellGame {
      * @note using requestAnimationFrame instead of setInterval, not block the event loop 
      */
     gameLoop = () => {
+        // check if this call is in the frame ratio
         if (!this.frameRateCheck()){
             return window.requestAnimationFrame(this.gameLoop)
         }
 
-        if (!this.levels[this.levelNumber]) return false
-        
+        if (!this.levels[this.levelNumber]) 
+            return false
+
         this.canvas.clear()
         
-        // add libraries into the level 
+        // inject libraries into the level class 
         this.levels[this.levelNumber].engineToolInjection(
             this.canvas, 
             this.keyboard.keyPress, 
             this.math,
             this.isFirstFrame
         )
-        
+       
+        // call frame generator method from custom game
         const isLevelEnd = this.levels[this.levelNumber].frame({
             isFirstFrame: this.isFirstFrame, 
             frameCount: this.frameCount
@@ -113,8 +130,11 @@ class SpellGame {
 
         if (isLevelEnd) this.levelNumber++
 
+        // reset
         this.isFirstFrame = false
         this.keyboard.resetKeyboard(this.keys)    
+        
+        // Call next loop
         window.requestAnimationFrame(this.gameLoop)
         this.frameCount++
     }

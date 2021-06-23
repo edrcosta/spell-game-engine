@@ -7,6 +7,7 @@ class SpellSprite {
         this.frames = frames;
         this.colors = colors;
         this.pixelSize = pixelSize ? pixelSize : 10
+        this.colission = new SpellColission(this)
     }
 
     /**

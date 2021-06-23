@@ -1,14 +1,14 @@
-// Use the color pallet array index to define colors in your bitmap
-const cube = new SpellSprite({
-    colors: ['blue', 'grey', 'green'],
+const logo = new SpellSprite({
     frames: [
-        [2, 0],
-        [0, 1],
+        [1, 1, 1, 0, 2, 2, 2, 0, 1, 1, 1, 0, 2, 0, 0],
+        [1, 0, 0, 0, 2, 0, 2, 0, 1, 1, 1, 0, 2, 0, 0],
+        [0, 1, 0, 0, 2, 2, 2, 0, 1, 0, 0, 0, 2, 0, 0],
+        [1, 1, 1, 0, 2, 0, 0, 0, 1, 1, 1, 0, 2, 2, 2],
     ],
-    pixelSize: 40
+    colors: ['transparent', 'green', 'blue'],
+    pixelSize: 30
 })
 
-// Render the pixel sprite into a canvas
 const canvas = new SpellCanvas('game')
 
-canvas.drawPixelSprite(cube)
+canvas.drawPixelSprite(logo)

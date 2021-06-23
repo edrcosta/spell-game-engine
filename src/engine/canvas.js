@@ -64,11 +64,14 @@ class SpellCanvas {
      * @param {Int} x 
      * @param {Int} y 
      * @param {"#000"} color 
+     * @param {Int} pixelW
+     * @param {Int} pixelH
      */
     drawPixel(x, y, color, pixelW = 10, pixelH = 10) {
         this.context.fillStyle = color
         this.context.fillRect(x, y, pixelW, pixelH)
         this.context.fillRect(x, y, pixelW, pixelH)
+        return this
     }
 
     /**
@@ -92,6 +95,7 @@ class SpellCanvas {
             })
             y += spriteClass.pixelSize
         })
+        return this
     }
 
     /**
@@ -108,6 +112,7 @@ class SpellCanvas {
         if (typeof flipped !== 'undefined' ? false : flipped) 
             this.context.scale(-1, 1)
         this.context.drawImage(imageClass.element, x, y, sizeX, sizeY)
+        return this
     }
 
     /**
@@ -117,6 +122,7 @@ class SpellCanvas {
     setBackgroundColor = (color) => {
         this.context.fillStyle = color
         this.context.fillRect(0, 0, this.element.width, this.element.height)
+        return this
     }
 
     /**
@@ -132,5 +138,6 @@ class SpellCanvas {
         this.context.textAlign = "center"
         this.context.fillStyle = color
         this.context.fillText(text, x, y)
+        return this
     }
 }
