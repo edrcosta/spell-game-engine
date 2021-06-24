@@ -84,7 +84,7 @@ class SpellCanvas {
         let y = spriteClass.position.y
         
         const colors = spriteClass.colors
-        const sprite = spriteClass.frames
+        const sprite = spriteClass.bitmap
         const originalX = x
         
         sprite.forEach(row => {

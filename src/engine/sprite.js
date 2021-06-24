@@ -1,10 +1,10 @@
 class SpellSprite {
-    frames;
+    bitmap;
     colors;
     position = { x: 0, y: 0 }
 
-    constructor({ frames, colors, pixelSize }){
-        this.frames = frames;
+    constructor({ bitmap, colors, pixelSize }){
+        this.bitmap = bitmap;
         this.colors = colors;
         this.pixelSize = pixelSize ? pixelSize : 10
         this.colission = new SpellColission(this)
@@ -28,5 +28,5 @@ class SpellSprite {
      * @param {Array[]} sprite 
      * @returns 
      */
-    change = (sprite) => this.frames = sprite
+    change = (sprite) => this.bitmap = sprite
 }

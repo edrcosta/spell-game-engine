@@ -2,7 +2,7 @@ const SPRITES = {}
 
 SPRITES.cube = () => new SpellSprite({
     colors: ['blue', 'grey', 'green'],
-    frames: [
+    bitmap: [
         [2, 0],
         [0, 1],
     ],
@@ -11,7 +11,7 @@ SPRITES.cube = () => new SpellSprite({
 
 SPRITES.l = () => new SpellSprite({
     colors: ['transparent', 'blue'],
-    frames: [
+    bitmap: [
         [1, 0],
         [1, 0],
         [1, 1],
