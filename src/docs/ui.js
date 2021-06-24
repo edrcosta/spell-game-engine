@@ -50,22 +50,29 @@ const loadAsset = (file) => {
  * @param {*} gameList 
  */
 const loadAssets = (id, gameList) => {
+    window.location.hash = id
     if(gameList[id]){
         for (let i = 0; i < gameList[id].length; i++) loadAsset(gameList[id][i])
+        domElements.reset.style.display = ''
+        domElements.start.style.display = 'none'
     }else{
         GameDebugger.log('Not found')
+        alert('not found')
     }
 }
 
 /**
  * Reset game onclick event handdler 
  */
-btnResetClickEvent = () => window.location.reload('')
+const btnResetClickEvent = () => {
+    window.location.reload('')
+    window.location.href = window.location.href.split('#')[0]
+}
 
 /**
  * Start Game onclick event handdler
  */
-btnStartClickEvent = () => {
+const btnStartClickEvent = () => {
     getGameId.url() !== '' ? loadAssets(getGameId.url(), gameList) : loadAssets(getGameId.select(), gameList)
     domElements.start.style.display = 'none'
     domElements.reset.style.display = ''
