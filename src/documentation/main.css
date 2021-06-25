@@ -1,0 +1,45 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+canvas {
+    width: 720px;
+    height: 720px;
+    border: 1px solid #fff;
+    margin: 0 auto;
+}
+
+#panel{
+    font-size: 1.2em;
+    color: #fff;
+    padding: 1em;
+    width: 720px;
+    margin: 0 auto;
+}
+
+select{
+    padding: 1em;
+    font-size: 1em;
+}
+
+input{
+    padding: 1em;
+    font-size: 1em;
+    margin: 1em;
+}
+
+#about{
+    padding: 1em;
+    font-weight: 10;
+}
+
+.title{
+    font-size: 1em;
+}

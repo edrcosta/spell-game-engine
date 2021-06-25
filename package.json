@@ -1,0 +1,31 @@
+{
+  "name": "spell-game-engine",
+  "version": "1.0.0",
+  "description": "WIP: Array Bitmap Javascritp game engine",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edrcosta/spell-game-engine.git"
+  },
+  "keywords": [
+    "javascritp",
+    "game",
+    "pixelart",
+    "bitmap",
+    "array"
+  ],
+  "author": "Eder Costa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edrcosta/spell-game-engine/issues"
+  },
+  "homepage": "https://github.com/edrcosta/spell-game-engine#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1"
+  }
+}
