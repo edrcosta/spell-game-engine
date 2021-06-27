@@ -20,4 +20,5 @@ app.use(favicon(__dirname + './src/documentation/favicon.ico'));
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, './src/documentation/index.html'));
 });
+
 app.listen(port);
