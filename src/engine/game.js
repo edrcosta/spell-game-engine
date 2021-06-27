@@ -20,10 +20,11 @@ class SpellGame {
 
     coordSystem = 'web'
 
+    singleLevelCallback = false
+
     constructor(framesPersecond) {
         this.framesPersecond = framesPersecond
         this.frameInterval = 1000 / this.framesPersecond
-        this.debugger = new SpellGameDebugger()
         this.math = new SpellMathHelper()
     }
 
@@ -65,17 +66,20 @@ class SpellGame {
     start(level) {
         this.levelNumber = level
 
-        if (!this.keys) throw 'You must run setKeyboardKeys first'
+        if(!this.singleLevelCallback && !this.isFirstFrame){
+            if (typeof this.levels[this.levelNumber] === 'undefined') 
+                throw new Error(`Level ${this.levelNumber} does not exists`)
 
-        const levelNumber = this.levelNumber
-
-        if (typeof this.levels[levelNumber] === 'undefined') throw `Level ${levelNumber} does not exists`
-        if (typeof this.levels[levelNumber].frame === 'undefined') throw `Level ${levelNumber} must have a frame function`
-
+            if (typeof this.levels[this.levelNumber].frame === 'undefined') 
+                throw new Error(`Level ${this.levelNumber} must have a frame function`)
+        }
+        
+        if (this.keys) 
+            this.keyboard.startListemKeyboard(this.keys)
+    
         this.canvas = new SpellCanvas('game', this.debugger)
         this.keyboard = new SpellKeyboard()
-
-        this.keyboard.startListemKeyboard(this.keys)
+    
         window.requestAnimationFrame(this.gameLoop)
     }
 
@@ -84,7 +88,7 @@ class SpellGame {
      * 
      * @note canvas dont has a frame rate system build in 
      */    
-    frameRateCheck(){
+    _frameRateCheck(){
         if (!this.lastGameLoopTimeStamp) this.lastGameLoopTimeStamp = new Date()
 
         const now = new Date()
@@ -97,21 +101,9 @@ class SpellGame {
     }
 
     /**
-     * Game loop method 
-     * 
-     * !called in the frameRate specify by the user 
-     * 
-     * @note using requestAnimationFrame instead of setInterval, not block the event loop 
+     * Execute the current level selected
      */
-    gameLoop = () => {
-        // check if this call is in the frame ratio
-        if (!this.frameRateCheck()){
-            return window.requestAnimationFrame(this.gameLoop)
-        }
-
-        if (!this.levels[this.levelNumber]) 
-            return false
-
+    _executeLevel(){
         this.canvas.clear()
         
         // inject libraries into the level class 
@@ -129,13 +121,49 @@ class SpellGame {
         })
 
         if (isLevelEnd) this.levelNumber++
+    }
 
-        // reset
+    /**
+     * Update game frame information status
+     */
+    _updateStatusRegisters(){
         this.isFirstFrame = false
-        this.keyboard.resetKeyboard(this.keys)    
-        
-        // Call next loop
-        window.requestAnimationFrame(this.gameLoop)
+        this.keyboard.resetKeyboard(this.keys)
         this.frameCount++
+    }
+
+    /**
+     * Game loop method 
+     * 
+     * !called in the frameRate specify by the user 
+     * 
+     * @note using requestAnimationFrame instead of setInterval, not block the event loop 
+     */
+    gameLoop = (singleLevelCallback) => {
+        if(!this.singleLevelCallback && typeof singleLevelCallback === 'function'){
+            this.singleLevelCallback = singleLevelCallback
+        }
+
+        if (!this._frameRateCheck()){
+            return window.requestAnimationFrame(this.gameLoop) // to next loop
+        }
+
+        if (!this.singleLevelCallback && (!this.levels || !this.levels[this.levelNumber]))
+            return false
+
+        if(typeof this.singleLevelCallback === 'function'){
+            this.singleLevelCallback({
+                canvas: this.canvas, 
+                keyboard: this.keyboard.keyPress, 
+                math: this.math,
+                isFirstFrame: this.isFirstFrame,
+                frameCount: this.frameCount
+            })
+        }else{
+            this._executeLevel()
+        }
+
+        this._updateStatusRegisters()
+        window.requestAnimationFrame(this.gameLoop) // to next loop
     }
 }

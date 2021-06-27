@@ -1,28 +1,33 @@
 const gameList = {
+    'bitmap-rendering': {
+        list: [
+            'example-games/bitmap-rendering/application.js',
+        ],
+        name: '1 - Simples Bitmap ou porque arrays?',
+        doc: 'example-games/bitmap-rendering/doc.html',
+    },
     'tetris': {
         list: [
-            'src/example-games/tetris/sprites.js',
-            'src/example-games/tetris/application.js',
-            'src/example-games/tetris/start.js',
+            'example-games/tetris/sprites.js',
+            'example-games/tetris/application.js',
+            'example-games/tetris/start.js',
         ],
+        doc: 'example-games/tetris/doc.html',
         name: 'Jogo de Tetris'
     },
     'controls': {
         list: [
-            'src/example-games/raw-pixel-rendering/application.js',
+            'example-games/controls/application.js',
         ],
-        name: 'Controles'
+        name: 'Controles',
+        doc: 'example-games/controls/doc.html',
     },
     'animacoes': {
         list: [
-            'src/example-games/animation/application.js',
+            'example-games/animation/application.js',
         ],
-        name: 'Animações Pixel arte'
+        name: 'Animações Pixel arte',
+        doc: 'example-games/animation/doc.html',
     },
-    'bitmap-rendering': {
-        list: [
-            'src/example-games/bitmap-rendering/application.js',
-        ],
-        name: 'Renderizando bitmap de Pixel arte'
-    },
+   
 }

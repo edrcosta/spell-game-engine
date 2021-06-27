@@ -1,0 +1,56 @@
+<h1>Renderização de bitmap e porque arrays?</h1>
+
+<p>
+    Se olharmos para a história dos games que consistem do que podemos chamar de "pixel arte", vamos perceber que algumas mecanicas são basicamente quadrados e retangulos se chocando... 
+
+    porém com o conceito de game que temos hoje em que mais e mais mecanicas 2d foram implementadas, fica claro que algumas coisas como multiplayer e geração procedural exigem um controle mais refinado da renderização, vc consegue imagnira um jogo como celeste sem as nuances de uma boa detecção de colisão?  
+
+    a spell é uma engine que foca em renderizar bitmaps (e por falta de termo melhor)... de 16 e 32 bits... embora não realmente haja uma limitação de tamanho dos pixels, o foco é em pixel arte formada por blocos distintos.
+</p>
+
+
+<h2>O padrão de bimap</h2>
+<p>
+    A forma mais simples de realizar um bitmap seria literalmente um array 2d... contendo um valor de cor por célula.
+
+    então temos literalmente um mapa dos pixels... 
+
+    <pre>
+    // bitmap cada número é o index do array de cores
+    [
+        [0, 0, 1],
+        [0, 0, 1],
+        [1, 1, 1],
+    ]
+
+    // array de cores é um array de strings contento qualquer valor que é aceito por CSS.
+    ['transparent', 'blue', '#fff']
+    </pre>
+
+    cada conjunto de pixels é denominado sprite... e possui um tamanho de pixel distinto dos demais
+</p>
+
+<p>
+    <h2>Código do exemplo</h2>
+</p>
+
+
+<pre>
+    // Crie um novo sprite
+    const logo = new SpellSprite({
+        bitmap: [
+            [1, 1, 1, 0, 2, 2, 2, 0, 1, 1, 1, 0, 2, 0, 0],
+            [1, 0, 0, 0, 2, 0, 2, 0, 1, 1, 1, 0, 2, 0, 0],
+            [0, 1, 0, 0, 2, 2, 2, 0, 1, 0, 0, 0, 2, 0, 0],
+            [1, 1, 1, 0, 2, 0, 0, 0, 1, 1, 1, 0, 2, 2, 2],
+        ],
+        colors: ['transparent', 'green', 'blue'],
+        pixelSize: 30
+    })
+    
+    // Instancie um objeto canvas 
+    const canvas = new SpellCanvas('game')
+    
+    // apenas desenhe o sprite no canvas
+    canvas.drawPixelSprite(logo)
+</pre>

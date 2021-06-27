@@ -7,6 +7,8 @@ body {
     background: #000;
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 5em;
+
 }
 
 canvas {
