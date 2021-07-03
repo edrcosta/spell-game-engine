@@ -22,5 +22,5 @@ animation.start(({canvas}) => {
     .drawPixel(100, 60 + i, '#1f959b', 30)
     .drawPixel(100, 70 + i, '#1f959b', 20)
     .drawPixel(100, 80 + i, '#1f959b', 10)
-i++
+    i++
 })

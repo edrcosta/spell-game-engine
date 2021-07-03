@@ -15,4 +15,6 @@ Create an Issue.
 
 ### Running and executing 
 
-npm start server.js 
+Use some webserver to load the src folder
+
+i using an simple chorme plugin called webserver for chrome 
